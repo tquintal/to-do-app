@@ -29,6 +29,8 @@ My recent react learning playground 🤓
 - ~~Toggle 'priority' on already added todo~~
 - ~~Full design/layout rebuild~~ (with animations)
 - ~~Search system~~
+- ~~Validate category~~
+- Delete category
 - Improve import validation
 - Export file without dependencies
 - Sort by custom order
