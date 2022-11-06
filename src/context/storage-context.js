@@ -170,14 +170,14 @@ export const StorageContextProvider = props => {
             const sortByNotCompleted = [
                 ...toDos.filter(todo => !todo.completed),
                 ...toDos.filter(todo => todo.completed)
-            ]; return sortByNotCompleted;
+            ]; return listToDosBy(searchToDos(sortByNotCompleted));
         };
 
         if (sortBy === 'completed') {
             const sortByCompleted = [
                 ...toDos.filter(todo => todo.completed),
                 ...toDos.filter(todo => !todo.completed)
-            ]; return sortByCompleted;
+            ]; return listToDosBy(searchToDos(sortByCompleted));
         }
 
         if (sortBy === 'date') {
