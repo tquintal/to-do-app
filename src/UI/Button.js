@@ -1,6 +1,6 @@
 import classes from './Button.module.css';
 
-const InputButton = props => {
+const Button = props => {
     return (
         <button
             type={props.type || 'button'}
@@ -14,4 +14,4 @@ const InputButton = props => {
     );
 };
 
-export default InputButton;
+export default Button;
