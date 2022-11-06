@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import StorageContext from '../../context/storage-context';
 import classes from './SearchToDo.module.css';
-import Button from '../../UI/Button';
+import Button from '../../ui/Button';
 
 const SearchToDo = props => {
     const [search, setSearch] = useState('');

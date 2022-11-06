@@ -58,7 +58,7 @@ function Actions() {
             <input id='upload' type='file' accept='.csv' style={{ width: '100%' }} onChange={onImportHandler} />
         </div>
         <CSVLink data={context.toDos}>Export</CSVLink>
-        <button onClick={onResetHandler}>Reset</button>
+        <button type='button' onClick={onResetHandler}>Reset</button>
     </div>;
 };
 

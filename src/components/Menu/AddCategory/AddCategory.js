@@ -12,6 +12,21 @@ function AddCategory() {
 
     const onSubmitHandler = event => {
         event.preventDefault();
+
+        if (newCategory.trim().length === 0) {
+            alert(`Error, can't be empty. ⚠️`);
+            setNewCategory('');
+            return;
+        };
+
+        for (let i = 0; i < context.categories.length; i++) {
+            if (context.categories[i] === newCategory) {
+                alert('Error, that category already exists. ⚠️');
+                setNewCategory('');
+                return;
+            };
+        };
+
         context.onCategoryAdd(newCategory);
         setNewCategory('');
     };

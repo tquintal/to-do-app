@@ -25,3 +25,10 @@ section {
   flex-direction: column;
   gap: 15px;
 }
+
+.mobile {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -13,7 +13,7 @@ const StorageContext = React.createContext({
     onPriorityChange: () => { },
     onSetListBy: () => { },
     onSetSearch: () => { },
-    onSortToDos: () => { },
+    onListToDos: () => { },
     onDelete: () => { },
     onDeleteAll: () => { },
     onLoadToDos: () => { }
@@ -85,15 +85,13 @@ export const StorageContextProvider = props => {
 
     // NEW CATEGORY
     const addCategoryHandler = newCategory => {
-        if (newCategory.trim().length > 0) {
-            setCategories(prevCat => {
-                const updatedCat = [...prevCat];
-                updatedCat.push(newCategory);
-                localStorage.setItem('Categories', JSON.stringify(updatedCat));
-                console.log('Category added ✅');
-                return updatedCat;
-            });
-        } else alert(`⚠️ Can't be empty ⚠️`);
+        setCategories(prevCat => {
+            const updatedCat = [...prevCat];
+            updatedCat.push(newCategory);
+            localStorage.setItem('Categories', JSON.stringify(updatedCat));
+            console.log('Category added ✅');
+            return updatedCat;
+        });
     };
 
     // COMPLETE TODO
@@ -168,14 +166,22 @@ export const StorageContextProvider = props => {
         if (sortBy === 'default')
             return listToDosBy(searchToDos(toDos));
 
-        if (sortBy === 'not-completed')
-            return listToDosBy(searchToDos(toDos.filter(todo => !todo.completed)));
+        if (sortBy === 'not-completed') {
+            const sortByNotCompleted = [
+                ...toDos.filter(todo => !todo.completed),
+                ...toDos.filter(todo => todo.completed)
+            ]; return sortByNotCompleted;
+        };
 
-        if (sortBy === 'completed')
-            return listToDosBy(searchToDos(toDos.filter(todo => todo.completed)));
+        if (sortBy === 'completed') {
+            const sortByCompleted = [
+                ...toDos.filter(todo => todo.completed),
+                ...toDos.filter(todo => !todo.completed)
+            ]; return sortByCompleted;
+        }
 
         if (sortBy === 'date') {
-            const sortedByDate = toDos.concat().map(toDo => {
+            const sortedByDate = toDos.map(toDo => {
                 return { ...toDo, created: new Date(toDo.created) } // Translate string to date
             }).sort((a, b) => b.created - a.created);
 
@@ -184,8 +190,8 @@ export const StorageContextProvider = props => {
 
         if (sortBy === 'priority') {
             const sortByPriority = [
-                ...toDos.concat().filter(toDo => toDo.highPriority),
-                ...toDos.concat().filter(toDo => !toDo.highPriority)
+                ...toDos.filter(toDo => toDo.highPriority),
+                ...toDos.filter(toDo => !toDo.highPriority)
             ];
             return listToDosBy(searchToDos(sortByPriority));
         };
