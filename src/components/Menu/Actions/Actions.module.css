@@ -1,0 +1,17 @@
+.actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.actions-container button,
+.actions-container a {
+  all: unset;
+  background: #303030;
+  color: #ffffff;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}

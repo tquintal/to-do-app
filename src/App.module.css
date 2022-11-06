@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Saira", sans-serif;
+}
+
+body {
+  background: #1b1b1b;
+  color: #ffffff;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+main {
+  display: flex;
+}
+
+section {
+  width: 100%;
+  margin-left: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

@@ -1,0 +1,16 @@
+.button {
+  all: unset;
+  cursor: pointer;
+  padding: 5px;
+  /* width: 75px; */
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border: 1px solid transparent;
+}
+
+.button:focus {
+  border: 1px solid #bebebe !important;
+}

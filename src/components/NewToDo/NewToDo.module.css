@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-top: 160px;
+}
+
+.new-to-do-container {
+  display: flex;
+  gap: 10px;
+}
+
+.new-to-do {
+  all: unset;
+  background: #303030;
+  color: #ffffff;
+  width: 100%;
+  padding: 10px;
+  padding-left: 25px;
+}
+
+.select {
+  width: 100px;
+  background: #303030;
+  border-color: transparent;
+  border-radius: 0px;
+}
+
+.select:focus {
+  border: 1px solid #bebebe;
+  outline: none;
+}
+
+.new-to-do-button {
+  background-color: #303030 !important; /* ⚠️⚠️⚠️ */
+}
