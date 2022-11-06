@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import StorageContext from '../../context/storage-context';
 import classes from './NewToDo.module.css';
-import Button from '../../ui/Button';
+import Button from '../../UI/Button';
 
 function NewToDo() {
     const context = useContext(StorageContext);
