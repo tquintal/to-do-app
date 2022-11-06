@@ -20,7 +20,7 @@ function AddCategory() {
         };
 
         for (let i = 0; i < context.categories.length; i++) {
-            if (context.categories[i] === newCategory) {
+            if (context.categories[i].toLowerCase() === newCategory.toLowerCase()) {
                 alert('Error, that category already exists. ⚠️');
                 setNewCategory('');
                 return;
