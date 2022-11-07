@@ -30,7 +30,8 @@ My recent react learning playground 🤓
 - ~~Full design/layout rebuild~~ (with animations)
 - ~~Search system~~
 - ~~Validate category~~
-- Delete category
+- ~~Delete category~~
+- Edit todo category
 - Improve import validation
 - Export file without dependencies
 - Sort by custom order

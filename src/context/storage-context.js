@@ -8,6 +8,7 @@ const StorageContext = React.createContext({
     listBy: '',
     onAdd: () => { },
     onCategoryAdd: () => { },
+    onCategoryDelete: () => { },
     onComplete: () => { },
     onEdit: () => { },
     onPriorityChange: () => { },
@@ -91,6 +92,15 @@ export const StorageContextProvider = props => {
             localStorage.setItem('Categories', JSON.stringify(updatedCat));
             console.log('Category added ✅');
             return updatedCat;
+        });
+    };
+
+    // DELETE CATEGORY
+    const deleteCategoryHandler = category => {
+        setCategories(prev => {
+            const updatedCategories = [...prev].filter(cat => cat !== category);
+            localStorage.setItem('Categories', JSON.stringify(updatedCategories));
+            return updatedCategories;
         });
     };
 
@@ -238,6 +248,7 @@ export const StorageContextProvider = props => {
                 listBy: listBy,
                 onAdd: addHandler,
                 onCategoryAdd: addCategoryHandler,
+                onCategoryDelete: deleteCategoryHandler,
                 onComplete: completeHandler,
                 onEdit: editHandler,
                 onPriorityChange: editPriorityHandler,

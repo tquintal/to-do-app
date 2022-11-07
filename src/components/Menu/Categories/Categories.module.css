@@ -1,10 +1,24 @@
 .ul-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
+.custom-cat-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-cat-container-active {
+  background: #303030;
+}
+
 .ul-li-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   padding: 10px;
   padding-left: 25px;
   cursor: pointer;
@@ -12,6 +26,10 @@
 
 .ul-li-item-active {
   background: #303030;
+}
+
+.custom-cat-container button {
+  margin-right: 25px;
 }
 
 .separator {

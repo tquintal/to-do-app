@@ -5,8 +5,10 @@ const Button = props => {
         <button
             type={props.type || 'button'}
             onClick={props.onClick}
+            style={props.style}
             className={`${classes['button']} ${props.className}`}
             todoid={props.todoid || ''}
+            category={props.category || ''}
             disabled={props.disabled || false}
         >
             {props.children}
