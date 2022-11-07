@@ -5,7 +5,7 @@ import Button from '../../UI/Button';
 
 function ToDoList() {
     const context = useContext(StorageContext);
-    const [sortBy, setSortBy] = useState('date');
+    const [sortBy, setSortBy] = useState('most-recent');
 
     const setSortByHandler = event => {
         setSortBy(event.target.id);
@@ -37,32 +37,58 @@ function ToDoList() {
     };
 
     return <div className={classes['to-do-list-container']}>
-        <h2>Todos</h2>
+        <h3 className={classes['title']}>Todos</h3>
         <h3>Sort by:</h3>
         <div className={classes['sort-container']}>
             <div className={classes['sort-item']}>
-                <input type='radio' name='radio-button' id='default' onChange={setSortByHandler} />
-                <label htmlFor='default'>Default</label>
+                <input type='radio' name='radio-button' defaultChecked={true} id='most-recent' onChange={setSortByHandler} />
+                <label htmlFor='most-recent'>most recent</label>
             </div>
             <div className={classes['sort-item']}>
-                <input type='radio' name='radio-button' id='not-completed' onChange={setSortByHandler} />
-                <label htmlFor='not-completed'>Not completed</label>
-            </div>
-            <div className={classes['sort-item']}>
-                <input type='radio' name='radio-button' id='completed' onChange={setSortByHandler} />
-                <label htmlFor='completed'>Completed</label>
-            </div>
-            <div className={classes['sort-item']}>
-                <input type='radio' name='radio-button' defaultChecked={true} id='date' onChange={setSortByHandler} />
-                <label htmlFor='date'>Recently added</label>
+                <input type='radio' name='radio-button' id='least-recent' onChange={setSortByHandler} />
+                <label htmlFor='least-recent'>least recent</label>
             </div>
             <div className={classes['sort-item']}>
                 <input type='radio' name='radio-button' id='priority' onChange={setSortByHandler} />
-                <label htmlFor='priority'>Priority</label>
+                <label htmlFor='priority'>priority</label>
             </div>
         </div>
         <ul className={classes['ul-container']}>
             {context.onListToDos(sortBy).map(todo =>
+                <li key={todo.id}>
+                    <input
+                        type='checkbox'
+                        checked={todo.completed}
+                        todoid={todo.id}
+                        onChange={onCompleteHandler}
+                        className={classes['complete-input']}
+                    />
+                    <input
+                        type='text'
+                        className={`${classes['to-do']} ${todo.completed && classes['completed']}`}
+                        defaultValue={todo.content}
+                        todoid={todo.id}
+                        onChange={onEditHandler}
+                        disabled={todo.completed}
+                    />
+                    <select className={classes['select']} disabled={todo.completed} defaultValue={todo.category} todoid={todo.id} onChange={onCategoryEditHandler}>
+                        {context.categories.map(category => <option key={category}>{category}</option>)}
+                    </select>
+                    <Button
+                        todoid={todo.id}
+                        onClick={onPriorityChangeHandler}
+                        className={`${classes['list-button']} ${todo.completed && classes['list-button-disabled']}`}
+                        disabled={todo.completed}
+                    >
+                        {todo.highPriority ? '❗' : '❕'}
+                    </Button>
+                    <Button title='delete-button' todoid={todo.id} onClick={onDeleteHandler} className={classes['list-button']}>Delete</Button>
+                </li>
+            )}
+        </ul>
+        <h3 className={classes['title']}>Completed:</h3>
+        <ul className={classes['ul-container']}>
+            {context.toDos.map(todo => todo.completed === true &&
                 <li key={todo.id}>
                     <input
                         type='checkbox'

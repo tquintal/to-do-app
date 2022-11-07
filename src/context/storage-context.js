@@ -186,29 +186,15 @@ export const StorageContextProvider = props => {
     };
 
     const listToDosHandler = sortBy => {
-        if (sortBy === 'default')
-            return listToDosBy(searchToDos(toDos));
+        if (sortBy === 'least-recent')
+            return listToDosBy(searchToDos(toDos.filter(todo => !todo.completed)));
 
-        if (sortBy === 'not-completed') {
-            const sortByNotCompleted = [
-                ...toDos.filter(todo => !todo.completed),
-                ...toDos.filter(todo => todo.completed)
-            ]; return listToDosBy(searchToDos(sortByNotCompleted));
-        };
-
-        if (sortBy === 'completed') {
-            const sortByCompleted = [
-                ...toDos.filter(todo => todo.completed),
-                ...toDos.filter(todo => !todo.completed)
-            ]; return listToDosBy(searchToDos(sortByCompleted));
-        }
-
-        if (sortBy === 'date') {
+        if (sortBy === 'most-recent') {
             const sortedByDate = toDos.map(toDo => {
                 return { ...toDo, created: new Date(toDo.created) } // Translate string to date
             }).sort((a, b) => b.created - a.created);
 
-            return listToDosBy(searchToDos(sortedByDate));
+            return listToDosBy(searchToDos(sortedByDate.filter(todo => !todo.completed)));
         };
 
         if (sortBy === 'priority') {

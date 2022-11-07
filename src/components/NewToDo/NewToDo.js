@@ -30,7 +30,6 @@ function NewToDo() {
             alert(`Can't be empty! ⚠️`);
 
         setTodo('');
-        setCategory('None');
         setHighPriority(false);
     };
 
@@ -43,6 +42,7 @@ function NewToDo() {
                 value={todo}
                 onChange={onWriteTodoHandler}
                 className={classes['new-to-do']}
+                autoFocus={true}
             />
             <select title='category' className={classes['select']} onChange={onCategoryChangeHandler} value={category}>
                 <optgroup label='Category' />
