@@ -7,6 +7,7 @@
   border-bottom-style: solid;
   position: fixed;
   background: #1b1b1b;
+  z-index: 1;
   /* background-size: cover;
   background-repeat: no-repeat;
   background-position: center; */
