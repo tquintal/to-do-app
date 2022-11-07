@@ -31,7 +31,7 @@ My recent react learning playground 🤓
 - ~~Search system~~
 - ~~Validate category~~
 - ~~Delete category~~
-- Edit todo category
+- ~~Edit todo category~~
 - Improve import validation
 - Export file without dependencies
 - Sort by custom order

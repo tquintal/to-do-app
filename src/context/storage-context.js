@@ -11,6 +11,7 @@ const StorageContext = React.createContext({
     onCategoryDelete: () => { },
     onComplete: () => { },
     onEdit: () => { },
+    onCategoryEdit: () => { },
     onPriorityChange: () => { },
     onSetListBy: () => { },
     onSetSearch: () => { },
@@ -22,7 +23,7 @@ const StorageContext = React.createContext({
 
 export const StorageContextProvider = props => {
     const [toDos, setToDos] = useState(JSON.parse(localStorage.getItem('ToDos')) || []);
-    const [categories, setCategories] = useState(JSON.parse(localStorage.getItem('Categories')) || ['none']);
+    const [categories, setCategories] = useState(JSON.parse(localStorage.getItem('Categories')) || ['None']);
     const [search, setSearch] = useState('');
     const [listBy, setListBy] = useState('all');
 
@@ -34,7 +35,7 @@ export const StorageContextProvider = props => {
             return updatedToDos;
         });
 
-        let updatedCategories = ['none'];
+        let updatedCategories = ['None'];
         for (let i = 0; i < testToDos.length; i++) {
             if (!updatedCategories.find(el => el === testToDos[i].category))
                 updatedCategories.push(testToDos[i].category);
@@ -123,6 +124,18 @@ export const StorageContextProvider = props => {
             const updatedToDos = [...prevToDos].map(toDo => {
                 if (toDo.id === id) return { ...toDo, content: toDoContent };
                 else return toDo;
+            });
+            localStorage.setItem('ToDos', JSON.stringify(updatedToDos));
+            return updatedToDos;
+        });
+    };
+
+    // EDIT TODO CATEGORY
+    const editCategoryHandler = (id, category) => {
+        setToDos(prevToDos => {
+            const updatedToDos = [...prevToDos].map(todo => {
+                if (todo.id === id) return { ...todo, category: category };
+                else return todo;
             });
             localStorage.setItem('ToDos', JSON.stringify(updatedToDos));
             return updatedToDos;
@@ -231,7 +244,7 @@ export const StorageContextProvider = props => {
         });
 
         setCategories(() => {
-            const updatedCat = ['none'];
+            const updatedCat = ['None'];
             localStorage.setItem('Categories', JSON.stringify(updatedCat));
             return updatedCat;
         })
@@ -251,6 +264,7 @@ export const StorageContextProvider = props => {
                 onCategoryDelete: deleteCategoryHandler,
                 onComplete: completeHandler,
                 onEdit: editHandler,
+                onCategoryEdit: editCategoryHandler,
                 onPriorityChange: editPriorityHandler,
                 onSetListBy: setListByHandler,
                 onSetSearch: setSearchHandler,

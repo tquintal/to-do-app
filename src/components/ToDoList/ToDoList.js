@@ -27,6 +27,10 @@ function ToDoList() {
         context.onPriorityChange(id);
     };
 
+    const onCategoryEditHandler = event => {
+        context.onCategoryEdit(event.target.attributes.todoid.value, event.target.value);
+    };
+
     const onDeleteHandler = event => {
         const id = event.target.attributes.todoid.value;
         context.onDelete(id);
@@ -75,10 +79,13 @@ function ToDoList() {
                         onChange={onEditHandler}
                         disabled={todo.completed}
                     />
+                    <select className={classes['select']} disabled={todo.completed} defaultValue={todo.category} todoid={todo.id} onChange={onCategoryEditHandler}>
+                        {context.categories.map(category => <option key={category}>{category}</option>)}
+                    </select>
                     <Button
                         todoid={todo.id}
                         onClick={onPriorityChangeHandler}
-                        className={classes['list-button']}
+                        className={`${classes['list-button']} ${todo.completed && classes['list-button-disabled']}`}
                         disabled={todo.completed}
                     >
                         {todo.highPriority ? '❗' : '❕'}
