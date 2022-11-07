@@ -35,3 +35,4 @@ My recent react learning playground 🤓
 - Improve import validation
 - Export file without dependencies
 - Sort by custom order
+- Mobile view
