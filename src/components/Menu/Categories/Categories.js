@@ -16,6 +16,8 @@ const Categories = props => {
     };
 
     return <ul className={classes['ul-container']}>
+        <li onClick={onCategoryChangeHandler} className={classes['separator']} />
+
         <li onClick={onCategoryChangeHandler} category={'All'} className={`${classes['ul-li-item']} ${context.listBy === 'all' && classes['ul-li-item-active']}`} style={{ marginTop: '15px' }}>
             All
         </li>
@@ -41,6 +43,8 @@ const Categories = props => {
                 <Button style={{ color: '#6c6c6c' }} category={category} onClick={onDeleteHandler}>Delete</Button>
             </div>
         )}
+
+        <li onClick={onCategoryChangeHandler} className={classes['separator']} />
     </ul>;
 };
 

@@ -9,8 +9,8 @@ const Menu = props => {
         <div className={classes['app-title-container']}>
             <h2>To Do App</h2>
         </div>
-        <Categories />
         <AddCategory />
+        <Categories />
         <Actions />
         {/* <Footer /> */}
         {/* <ul style={{ textAlign: 'center', marginTop: '15px' }}>
