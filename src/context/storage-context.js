@@ -187,14 +187,14 @@ export const StorageContextProvider = props => {
 
     const listToDosHandler = sortBy => {
         if (sortBy === 'least-recent')
-            return listToDosBy(searchToDos(toDos.filter(todo => !todo.completed)));
+            return listToDosBy(searchToDos(toDos));
 
         if (sortBy === 'most-recent') {
             const sortedByDate = toDos.map(toDo => {
                 return { ...toDo, created: new Date(toDo.created) } // Translate string to date
             }).sort((a, b) => b.created - a.created);
 
-            return listToDosBy(searchToDos(sortedByDate.filter(todo => !todo.completed)));
+            return listToDosBy(searchToDos(sortedByDate));
         };
 
         if (sortBy === 'priority') {

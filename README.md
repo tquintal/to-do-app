@@ -32,6 +32,8 @@ My recent react learning playground 🤓
 - ~~Validate category~~
 - ~~Delete category~~
 - ~~Edit todo category~~
+- ~~Improve sort and grouping logic~~
+- ~~Show/Hide groups~~
 - Improve import validation
 - Export file without dependencies
 - Sort by custom order

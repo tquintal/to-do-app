@@ -3,7 +3,6 @@ import classes from './App.module.css';
 import Menu from './components/Menu/Menu';
 import Banner from './components/Banner/Banner';
 import NewToDo from './components/NewToDo/NewToDo';
-import SearchToDo from './components/SearchToDo/SearchToDo';
 import ToDoList from './components/ToDoList/ToDoList';
 
 const Desktop = () =>
@@ -13,7 +12,6 @@ const Desktop = () =>
       <section>
         <Banner />
         <NewToDo />
-        <SearchToDo />
         <ToDoList />
       </section>
     </main>
