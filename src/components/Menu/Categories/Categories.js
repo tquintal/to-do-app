@@ -18,7 +18,7 @@ const Categories = props => {
     return <ul className={classes['ul-container']}>
         <li onClick={onCategoryChangeHandler} className={classes['separator']} />
 
-        <li onClick={onCategoryChangeHandler} category={'All'} className={`${classes['ul-li-item']} ${context.listBy === 'all' && classes['ul-li-item-active']}`} style={{ marginTop: '15px' }}>
+        <li onClick={onCategoryChangeHandler} category={'All'} className={`${classes['ul-li-item']} ${context.listBy === 'all' && classes['ul-li-item-active']}`}>
             All
         </li>
         <li onClick={onCategoryChangeHandler} category={'None'} className={`${classes['ul-li-item']} ${context.listBy === 'none' && classes['ul-li-item-active']}`}>
