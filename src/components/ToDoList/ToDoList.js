@@ -109,8 +109,7 @@ function ToDoList() {
                                 defaultValue={todo.content}
                                 todoid={todo.id}
                                 onChange={onEditHandler}
-                                onFocus={showOptionsHandler}
-                                onBlur={hideOptionsHandler}
+                                onClick={showOptionsHandler}
                                 disabled={todo.completed}
                             />
                             <Button
