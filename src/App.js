@@ -35,7 +35,7 @@ function App() {
     });
   };
 
-  if (device.width < 850 || device.height < 525) return <Mobile />;
+  if (device.height < 525) return <Mobile />;
   else return <Desktop />;
 }
 
