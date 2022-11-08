@@ -19,12 +19,12 @@ function ToDoList() {
         });
     };
 
-    const hideOptionsHandler = () => {
-        setOptions(() => {
-            const idUpdate = '';
-            return idUpdate;
-        });
-    };
+    // const hideOptionsHandler = () => {
+    //     setOptions(() => {
+    //         const idUpdate = '';
+    //         return idUpdate;
+    //     });
+    // };
 
     const setSortByHandler = event => {
         setSortBy(event.target.id);
@@ -101,7 +101,6 @@ function ToDoList() {
                                 checked={todo.completed}
                                 todoid={todo.id}
                                 onChange={onCompleteHandler}
-                                className={classes['complete-input']}
                             />
                             <input
                                 type='text'
