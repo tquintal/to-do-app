@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import StorageContext from '../../../context/storage-context';
+import Context from '../../../context/context';
 import classes from './Categories.module.css';
 import Button from '../../../UI/Button';
 
 const Categories = props => {
-    const context = useContext(StorageContext);
+    const context = useContext(Context);
 
     const onCategoryChangeHandler = event => {
         context.onSetListBy(event.target.attributes.category.value);

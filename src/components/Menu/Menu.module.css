@@ -9,6 +9,7 @@
   position: fixed;
   border-right: 1px #d4d4d4;
   border-right-style: solid;
+  z-index: 2;
 }
 
 .app-title-container {
@@ -19,4 +20,34 @@
   padding-bottom: 50px;
   border-bottom: 1px #d4d4d4;
   border-bottom-style: solid;
+}
+
+.app-title-container svg {
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 13px;
+}
+
+@media only screen and (max-width: 850px) {
+  .container {
+    width: 100%;
+    right: -100%;
+    transition: 350ms;
+    border: none;
+  }
+
+  .app-title-container svg {
+    visibility: visible;
+  }
+
+  .container-active {
+    right: 0%;
+  }
+
+  .app-title-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }

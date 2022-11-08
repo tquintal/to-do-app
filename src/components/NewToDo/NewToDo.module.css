@@ -7,6 +7,12 @@
   margin-top: 160px;
 }
 
+@media only screen and (max-width: 850px) {
+  .container {
+    margin-top: 80px;
+  }
+}
+
 .new-to-do-container {
   display: flex;
   gap: 10px;
@@ -16,9 +22,20 @@
   all: unset;
   background: #303030;
   color: #ffffff;
-  width: 100%;
+  /* width: 100%; */
   padding: 10px;
   padding-left: 25px;
+}
+
+.options-container {
+  display: flex;
+  gap: 10px;
+}
+
+@media only screen and (min-width: 850px) {
+  .new-to-do {
+    width: 100%;
+  }
 }
 
 .select {
@@ -26,6 +43,16 @@
   background: #303030;
   border-color: transparent;
   border-radius: 0px;
+}
+
+@media only screen and (max-width: 850px) {
+  .new-to-do-container {
+    flex-direction: column;
+  }
+
+  .select {
+    width: 100%;
+  }
 }
 
 .select:focus {

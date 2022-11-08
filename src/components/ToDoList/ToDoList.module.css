@@ -42,7 +42,7 @@
   margin-bottom: 15px;
 }
 
-@media only screen and (max-width: 638px) {
+@media only screen and (max-width: 850px) {
   .sort-container {
     flex-direction: column;
     gap: 0px;
@@ -61,6 +61,13 @@
   /* gap: 15px; */
 }
 
+.todo-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
 .ul-container li {
   all: unset;
   background: #303030;
@@ -72,12 +79,17 @@
   margin-bottom: 15px;
 }
 
+@media only screen and (max-width: 850px) {
+  .ul-container li {
+    flex-direction: column;
+  }
+}
+
 .to-do {
   all: unset;
   background: #1b1b1b;
   color: #ffffff;
   width: 100%;
-  height: 100%;
   padding-left: 10px;
 }
 
@@ -86,12 +98,31 @@
   color: #555555;
 }
 
+.options-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+@media only screen and (max-width: 850px) {
+  .options-container {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
 .select {
   width: 100px;
-  height: 100%;
   background: #1b1b1b;
   border-color: transparent;
   border-radius: 0px;
+}
+
+@media only screen and (max-width: 850px) {
+  .select {
+    width: 100%;
+    margin-left: 23px;
+  }
 }
 
 .select:focus {

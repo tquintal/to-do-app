@@ -35,7 +35,7 @@ My recent react learning playground 🤓
 - ~~Improve sort and grouping logic~~
 - ~~Show/Hide groups~~
 - ~~Group counter~~
-- Mobile view
+- ~~Mobile view~~
 - Improve import validation
 - Export file without dependencies
 - Sort by custom order

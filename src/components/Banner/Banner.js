@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import Context from '../../context/context';
+import { MdMenu } from 'react-icons/md';
 import classes from './Banner.module.css';
 
 const Banner = props => {
@@ -9,8 +12,15 @@ const Banner = props => {
         month: months[newDate.getMonth()],
     }
 
+    const context = useContext(Context);
+
+    const showMenuHandler = () => {
+        context.onShowMobileMenu();
+    };
+
     return <div className={classes['container']}>
         <h1>{`${date.weekDay} ${date.day} ${date.month}`}</h1>
+        <MdMenu size='2em' onClick={showMenuHandler} />
     </div>;
     // return <div className={classes['container']} style={{ backgroundImage: `url(${Image})` }} />;
 };

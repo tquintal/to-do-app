@@ -1,15 +1,30 @@
 import { useContext, useState } from 'react';
-import StorageContext from '../../context/storage-context';
+import Context from '../../context/context';
 import SearchToDo from '../SearchToDo/SearchToDo';
 import classes from './ToDoList.module.css';
 import Button from '../../UI/Button';
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
 
 function ToDoList() {
-    const context = useContext(StorageContext);
+    const context = useContext(Context);
     const [sortBy, setSortBy] = useState('most-recent');
     const [showToDos, setShowToDos] = useState(true);
     const [showCompleted, setShowCompleted] = useState(false);
+
+    const [options, setOptions] = useState('');
+    const showOptionsHandler = event => {
+        setOptions(() => {
+            const idUpdate = event.target.attributes.todoid.value;
+            return idUpdate;
+        });
+    };
+
+    const hideOptionsHandler = () => {
+        setOptions(() => {
+            const idUpdate = '';
+            return idUpdate;
+        });
+    };
 
     const setSortByHandler = event => {
         setSortBy(event.target.id);
@@ -80,33 +95,42 @@ function ToDoList() {
             <ul className={classes['ul-container']}>
                 {context.onListToDos(sortBy).filter(todo => !todo.completed).map(todo =>
                     <li key={todo.id}>
-                        <input
-                            type='checkbox'
-                            checked={todo.completed}
-                            todoid={todo.id}
-                            onChange={onCompleteHandler}
-                            className={classes['complete-input']}
-                        />
-                        <input
-                            type='text'
-                            className={`${classes['to-do']} ${todo.completed && classes['completed']}`}
-                            defaultValue={todo.content}
-                            todoid={todo.id}
-                            onChange={onEditHandler}
-                            disabled={todo.completed}
-                        />
-                        <select className={classes['select']} disabled={todo.completed} defaultValue={todo.category} todoid={todo.id} onChange={onCategoryEditHandler}>
-                            {context.categories.map(category => <option key={category}>{category}</option>)}
-                        </select>
-                        <Button
-                            todoid={todo.id}
-                            onClick={onPriorityChangeHandler}
-                            className={`${classes['list-button']} ${todo.completed && classes['list-button-disabled']}`}
-                            disabled={todo.completed}
-                        >
-                            {todo.highPriority ? '❗' : '❕'}
-                        </Button>
-                        <Button title='delete-button' todoid={todo.id} onClick={onDeleteHandler} className={classes['list-button']}>Delete</Button>
+                        <div className={classes['todo-container']}>
+                            <input
+                                type='checkbox'
+                                checked={todo.completed}
+                                todoid={todo.id}
+                                onChange={onCompleteHandler}
+                                className={classes['complete-input']}
+                            />
+                            <input
+                                type='text'
+                                className={classes['to-do']}
+                                defaultValue={todo.content}
+                                todoid={todo.id}
+                                onChange={onEditHandler}
+                                onFocus={showOptionsHandler}
+                                onBlur={hideOptionsHandler}
+                                disabled={todo.completed}
+                            />
+                            <Button
+                                todoid={todo.id}
+                                onClick={onPriorityChangeHandler}
+                                className={`${classes['list-button']} ${todo.completed && classes['list-button-disabled']}`}
+                                disabled={todo.completed}
+                            >
+                                {todo.highPriority ? '❗' : '❕'}
+                            </Button>
+                        </div>
+                        {options === todo.id &&
+                            <div className={classes['options-container']}>
+                                <select className={classes['select']} disabled={todo.completed} defaultValue={todo.category} todoid={todo.id} onChange={onCategoryEditHandler}>
+                                    {context.categories.map(category => <option key={category}>{category}</option>)}
+                                </select>
+
+                                <Button title='delete-button' todoid={todo.id} onClick={onDeleteHandler} className={classes['list-button']}>Delete</Button>
+                            </div>
+                        }
                     </li>
                 )}
             </ul>
@@ -126,33 +150,31 @@ function ToDoList() {
             <ul className={classes['ul-container']}>
                 {context.onListToDos(sortBy).filter(todo => todo.completed).map(todo =>
                     <li key={todo.id}>
-                        <input
-                            type='checkbox'
-                            checked={todo.completed}
-                            todoid={todo.id}
-                            onChange={onCompleteHandler}
-                            className={classes['complete-input']}
-                        />
-                        <input
-                            type='text'
-                            className={`${classes['to-do']} ${todo.completed && classes['completed']}`}
-                            defaultValue={todo.content}
-                            todoid={todo.id}
-                            onChange={onEditHandler}
-                            disabled={todo.completed}
-                        />
-                        <select className={classes['select']} disabled={todo.completed} defaultValue={todo.category} todoid={todo.id} onChange={onCategoryEditHandler}>
-                            {context.categories.map(category => <option key={category}>{category}</option>)}
-                        </select>
-                        <Button
-                            todoid={todo.id}
-                            onClick={onPriorityChangeHandler}
-                            className={`${classes['list-button']} ${todo.completed && classes['list-button-disabled']}`}
-                            disabled={todo.completed}
-                        >
-                            {todo.highPriority ? '❗' : '❕'}
-                        </Button>
-                        <Button title='delete-button' todoid={todo.id} onClick={onDeleteHandler} className={classes['list-button']}>Delete</Button>
+                        <div className={classes['todo-container']}>
+                            <input
+                                type='checkbox'
+                                checked={todo.completed}
+                                todoid={todo.id}
+                                onChange={onCompleteHandler}
+                                className={classes['complete-input']}
+                            />
+                            <input
+                                type='text'
+                                className={`${classes['to-do']} ${todo.completed && classes['completed']}`}
+                                defaultValue={todo.content}
+                                todoid={todo.id}
+                                onChange={onEditHandler}
+                                disabled={todo.completed}
+                            />
+                            <Button
+                                todoid={todo.id}
+                                onClick={onPriorityChangeHandler}
+                                className={`${classes['list-button']} ${todo.completed && classes['list-button-disabled']}`}
+                                disabled={todo.completed}
+                            >
+                                {todo.highPriority ? '❗' : '❕'}
+                            </Button>
+                        </div>
                     </li>
                 )}
             </ul>

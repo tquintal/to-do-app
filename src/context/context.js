@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import { testToDos } from './testToDos';
 
-const StorageContext = React.createContext({
+const Context = React.createContext({
     toDos: [],
     categories: [],
     listBy: '',
+    mobileMenu: [],
+    onShowMobileMenu: () => { },
     onAdd: () => { },
     onCategoryAdd: () => { },
     onCategoryDelete: () => { },
@@ -21,11 +23,16 @@ const StorageContext = React.createContext({
     onLoadToDos: () => { }
 });
 
-export const StorageContextProvider = props => {
+export const ContextProvider = props => {
     const [toDos, setToDos] = useState(JSON.parse(localStorage.getItem('ToDos')) || []);
     const [categories, setCategories] = useState(JSON.parse(localStorage.getItem('Categories')) || ['None']);
     const [search, setSearch] = useState('');
     const [listBy, setListBy] = useState('all');
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+    const setShowMobileMenuHandler = () => {
+        setShowMobileMenu(prevState => !prevState);
+    };
 
     // LOAD
     const loadToDosHandler = testToDos => {
@@ -240,11 +247,13 @@ export const StorageContextProvider = props => {
     };
 
     return (
-        <StorageContext.Provider
+        <Context.Provider
             value={{
                 toDos: toDos,
                 categories: categories,
                 listBy: listBy,
+                mobileMenu: showMobileMenu,
+                onShowMobileMenu: setShowMobileMenuHandler,
                 onAdd: addHandler,
                 onCategoryAdd: addCategoryHandler,
                 onCategoryDelete: deleteCategoryHandler,
@@ -261,8 +270,8 @@ export const StorageContextProvider = props => {
             }}
         >
             {props.children}
-        </StorageContext.Provider>
+        </Context.Provider>
     );
 };
 
-export default StorageContext;
+export default Context;

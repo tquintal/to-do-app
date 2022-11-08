@@ -23,20 +23,21 @@ const Mobile = () =>
   </div>;
 
 function App() {
-  const [device, setDevice] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight
-  });
+  // const [device, setDevice] = useState({
+  //   width: window.innerWidth,
+  //   height: window.innerHeight
+  // });
 
-  window.onresize = function () {
-    setDevice({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
-  };
+  // window.onresize = function () {
+  //   setDevice({
+  //     width: window.innerWidth,
+  //     height: window.innerHeight
+  //   });
+  // };
 
-  if (device.width < 850 || device.height < 525) return <Mobile />;
-  else return <Desktop />;
+  // if (device.width < 850 || device.height < 525) return <Mobile />;
+  // else return <Desktop />;
+  return <Desktop />
 }
 
 export default App;

@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
-import StorageContext from '../../../context/storage-context';
+import Context from '../../../context/context';
 import classes from './AddCategory.module.css';
 
 function AddCategory() {
-    const context = useContext(StorageContext);
+    const context = useContext(Context);
     const [newCategory, setNewCategory] = useState('');
 
     const onInputHandler = event => {

@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
-import StorageContext from '../../context/storage-context';
+import Context from '../../context/context';
 import classes from './NewToDo.module.css';
 import Button from '../../UI/Button';
 
 function NewToDo() {
-    const context = useContext(StorageContext);
+    const context = useContext(Context);
     const [todo, setTodo] = useState('');
     const [category, setCategory] = useState('None');
     const [highPriority, setHighPriority] = useState(false);
@@ -44,14 +44,16 @@ function NewToDo() {
                 className={classes['new-to-do']}
                 autoFocus={true}
             />
-            <select title='category' className={classes['select']} onChange={onCategoryChangeHandler} value={category}>
-                <optgroup label='Category' />
-                {context.categories.map(cat =>
-                    <option key={cat}>{cat}</option>
-                )}
-            </select>
-            <Button className={classes['new-to-do-button']} onClick={onHighPriorityChangeHandler}>{highPriority ? '❗' : '❕'}</Button>
-            <Button type='submit' className={classes['new-to-do-button']}>Add</Button>
+            <div className={classes['options-container']}>
+                <select title='category' className={classes['select']} onChange={onCategoryChangeHandler} value={category}>
+                    <optgroup label='Category' />
+                    {context.categories.map(cat =>
+                        <option key={cat}>{cat}</option>
+                    )}
+                </select>
+                <Button className={classes['new-to-do-button']} onClick={onHighPriorityChangeHandler}>{highPriority ? '❗' : '❕'}</Button>
+                <Button type='submit' className={classes['new-to-do-button']}>Add</Button>
+            </div>
         </div>
     </form>;
 };

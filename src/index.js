@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { StorageContextProvider } from './context/storage-context';
+import { ContextProvider } from './context/context';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <StorageContextProvider>
+  <ContextProvider>
     <App />
-  </StorageContextProvider>
+  </ContextProvider>
 );

@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import StorageContext from '../../../context/storage-context';
+import Context from '../../../context/context';
 import classes from './Actions.module.css';
 import { CSVLink } from 'react-csv';
 
 function Actions() {
-    const context = useContext(StorageContext);
+    const context = useContext(Context);
 
     const onImportHandler = event => {
         const csvToArray = (str, delimiter = ',') => {

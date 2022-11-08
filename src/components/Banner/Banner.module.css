@@ -18,3 +18,27 @@
 .container h1 {
   padding-right: 25px;
 }
+
+.container svg {
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 13px;
+}
+
+@media only screen and (max-width: 850px) {
+  .container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+  }
+
+  .container svg {
+    visibility: visible;
+  }
+
+  .container h1 {
+    padding-right: 0px;
+  }
+}

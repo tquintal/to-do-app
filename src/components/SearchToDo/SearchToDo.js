@@ -1,11 +1,11 @@
 import { useState, useContext } from 'react';
-import StorageContext from '../../context/storage-context';
+import Context from '../../context/context';
 import classes from './SearchToDo.module.css';
 import Button from '../../UI/Button';
 
 const SearchToDo = props => {
     const [search, setSearch] = useState('');
-    const context = useContext(StorageContext);
+    const context = useContext(Context);
 
     const onSubmitHandler = event => {
         event.preventDefault();
