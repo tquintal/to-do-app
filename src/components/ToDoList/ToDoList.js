@@ -66,7 +66,10 @@ function ToDoList() {
         </div>
         <SearchToDo />
         <div onClick={onToDosHideHandler} className={classes['title-container']}>
-            <h3>To do</h3>
+            <div className={classes['title-left']}>
+                <h3>To do</h3>
+                <p className={classes['counter']}>{context.toDos.filter(todo => todo.completed).length}</p>
+            </div>
             <div className={classes['show-hide']}>
                 <p>{showToDos ? 'Hide' : 'Show'}</p>
                 {showToDos ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
@@ -109,7 +112,10 @@ function ToDoList() {
             </ul>
         }
         <div onClick={onCompletedHideHandler} className={classes['title-container']}>
-            <h3>Completed</h3>
+            <div className={classes['title-left']}>
+                <h3>Completed</h3>
+                <p className={classes['counter']}>{context.toDos.filter(todo => !todo.completed).length}</p>
+            </div>
             <div className={classes['show-hide']}>
                 <p>{showCompleted ? 'Hide' : 'Show'}</p>
                 {showCompleted ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}

@@ -10,8 +10,20 @@
   justify-content: space-between;
   background: #303030;
   padding: 8px;
+  padding-right: 15px;
   margin-bottom: 15px;
   cursor: pointer;
+}
+
+.title-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.counter {
+  color: #959595;
+  font-size: 14px;
 }
 
 .show-hide {
