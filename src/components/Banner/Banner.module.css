@@ -4,7 +4,7 @@
   padding-bottom: 50px;
   display: flex;
   justify-content: flex-end;
-  align-items: end;
+  align-items: flex-end;
   border-bottom: 1px #d4d4d4;
   border-bottom-style: solid;
   position: fixed;
