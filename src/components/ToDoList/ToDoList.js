@@ -68,7 +68,7 @@ function ToDoList() {
         <div onClick={onToDosHideHandler} className={classes['title-container']}>
             <div className={classes['title-left']}>
                 <h3>To do</h3>
-                <p className={classes['counter']}>{context.toDos.filter(todo => !todo.completed).length}</p>
+                <p className={classes['counter']}>{context.onListToDos(sortBy).filter(todo => !todo.completed).length}</p>
             </div>
             <div className={classes['show-hide']}>
                 <p>{showToDos ? 'Hide' : 'Show'}</p>
@@ -114,7 +114,7 @@ function ToDoList() {
         <div onClick={onCompletedHideHandler} className={classes['title-container']}>
             <div className={classes['title-left']}>
                 <h3>Completed</h3>
-                <p className={classes['counter']}>{context.toDos.filter(todo => todo.completed).length}</p>
+                <p className={classes['counter']}>{context.onListToDos(sortBy).filter(todo => todo.completed).length}</p>
             </div>
             <div className={classes['show-hide']}>
                 <p>{showCompleted ? 'Hide' : 'Show'}</p>
