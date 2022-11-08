@@ -34,7 +34,7 @@ My recent react learning playground 🤓
 - ~~Edit todo category~~
 - ~~Improve sort and grouping logic~~
 - ~~Show/Hide groups~~
+- Mobile view
 - Improve import validation
 - Export file without dependencies
 - Sort by custom order
-- Mobile view
