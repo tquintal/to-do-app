@@ -65,9 +65,9 @@ function ToDoList() {
             </div>
         </div>
         <SearchToDo />
-        <div className={classes['title-container']}>
+        <div onClick={onToDosHideHandler} className={classes['title-container']}>
             <h3>To do</h3>
-            <div onClick={onToDosHideHandler} className={classes['show-hide']}>
+            <div className={classes['show-hide']}>
                 <p>{showToDos ? 'Hide' : 'Show'}</p>
                 {showToDos ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
             </div>
@@ -108,9 +108,9 @@ function ToDoList() {
                 )}
             </ul>
         }
-        <div className={classes['title-container']}>
+        <div onClick={onCompletedHideHandler} className={classes['title-container']}>
             <h3>Completed</h3>
-            <div onClick={onCompletedHideHandler} className={classes['show-hide']}>
+            <div className={classes['show-hide']}>
                 <p>{showCompleted ? 'Hide' : 'Show'}</p>
                 {showCompleted ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
             </div>

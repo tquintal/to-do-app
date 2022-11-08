@@ -11,18 +11,17 @@
   background: #303030;
   padding: 8px;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 .show-hide {
   display: flex;
   align-items: center;
   gap: 3px;
-  cursor: pointer;
 }
 
 .title svg {
   height: 100%;
-  cursor: pointer;
 }
 
 .sort-container {
