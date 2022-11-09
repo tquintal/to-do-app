@@ -3,11 +3,12 @@ import Context from '../../../context/context';
 import classes from './Categories.module.css';
 import Button from '../../../UI/Button';
 
-const Categories = props => {
+function Categories() {
     const context = useContext(Context);
 
     const onCategoryChangeHandler = event => {
         context.onSetListBy(event.target.attributes.category.value);
+        context.onShowMobileMenu();
     };
 
     const onDeleteHandler = event => {
@@ -47,7 +48,7 @@ const Categories = props => {
         <li className={classes['separator']} />
 
         <li onClick={onCategoryChangeHandler} category={'Deleted'} className={`${classes['ul-li-item']} ${context.listBy === 'deleted' && classes['ul-li-item-active']}`}>
-            Deleted
+            🗑️ Deleted
             <p className={classes['deleted-counter']}>{context.toDos.filter(todo => todo.deleted).length}</p>
         </li>
 
