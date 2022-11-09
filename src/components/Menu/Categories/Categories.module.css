@@ -32,6 +32,11 @@
   margin-right: 25px;
 }
 
+.deleted-counter {
+  color: #6c6c6c;
+  margin-right: 25px;
+}
+
 .separator {
   border-bottom: 1px solid #5e5e5e;
   height: 0px;

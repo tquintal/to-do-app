@@ -85,7 +85,15 @@ export const ContextProvider = props => {
     const addHandler = (toDo, category, highPriority) => {
         setToDos(prevToDos => {
             const updatedToDos = [...prevToDos];
-            updatedToDos.push({ id: Math.random().toString(), content: toDo, created: new Date(), category: category, highPriority: highPriority, completed: false });
+            updatedToDos.push({
+                id: Math.random().toString(),
+                content: toDo,
+                created: new Date(),
+                category: category,
+                highPriority: highPriority,
+                completed: false,
+                deleted: false
+            });
             localStorage.setItem('ToDos', JSON.stringify(updatedToDos));
             console.log('To do added ✅');
             return updatedToDos;
@@ -178,7 +186,7 @@ export const ContextProvider = props => {
             });
 
             return todos.filter(todo => todo.created.toString().slice(0, 10) === today);
-        }
+        } else if (listBy === 'deleted') return todos.filter(todo => todo.deleted === true);
         return todos.filter(todo => todo.category.toLowerCase() === listBy);
     };
 
@@ -213,19 +221,16 @@ export const ContextProvider = props => {
         };
     };
 
-    // DELETE TODO
+    // DELETE/RECOVER TODO
     const deleteHandler = id => {
         setToDos(prevToDos => {
-            const updatedToDos = [...prevToDos].filter(toDo => toDo.id !== id);
+            const updatedToDos = [...prevToDos].map(todo => {
+                if (todo.id === id) return { ...todo, deleted: !todo.deleted };
+                else return todo;
+            });
             localStorage.setItem('ToDos', JSON.stringify(updatedToDos));
-            return updatedToDos
+            return updatedToDos;
         });
-
-        // Idk why but it feels better this way ^
-
-        // const updatedToDos = toDos.filter(todo => todo.id !== id);
-        // setToDos(updatedToDos);
-        // localStorage.setItem('ToDos', JSON.stringify(updatedToDos));
     };
 
     // DELETE ALL TODOS
@@ -240,10 +245,7 @@ export const ContextProvider = props => {
             const updatedCat = ['None'];
             localStorage.setItem('Categories', JSON.stringify(updatedCat));
             return updatedCat;
-        })
-
-        // setToDos([]);
-        // localStorage.removeItem('ToDos');
+        });
     };
 
     return (

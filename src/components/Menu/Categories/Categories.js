@@ -28,7 +28,7 @@ const Categories = props => {
             Today
         </li>
 
-        <li onClick={onCategoryChangeHandler} className={classes['separator']} />
+        {context.categories.filter(category => category.toLowerCase() !== 'none').length > 0 && <li className={classes['separator']} />}
 
         {context.categories.map(category => category.toLowerCase() !== 'none' &&
             <div className={`${classes['custom-cat-container']} ${context.listBy === category.toLowerCase() && classes['custom-cat-container-active']}`} key={category}>
@@ -44,7 +44,14 @@ const Categories = props => {
             </div>
         )}
 
-        <li onClick={onCategoryChangeHandler} className={classes['separator']} />
+        <li className={classes['separator']} />
+
+        <li onClick={onCategoryChangeHandler} category={'Deleted'} className={`${classes['ul-li-item']} ${context.listBy === 'deleted' && classes['ul-li-item-active']}`}>
+            Deleted
+            <p className={classes['deleted-counter']}>{context.toDos.filter(todo => todo.deleted).length}</p>
+        </li>
+
+        <li className={classes['separator']} />
     </ul>;
 };
 
