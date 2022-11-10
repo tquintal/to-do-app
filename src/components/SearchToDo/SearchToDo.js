@@ -3,7 +3,7 @@ import Context from '../../context/context';
 import classes from './SearchToDo.module.css';
 import Button from '../../UI/Button';
 
-function SearchToDo() {
+const SearchToDo = props => {
     const [search, setSearch] = useState('');
     const context = useContext(Context);
 
@@ -18,7 +18,7 @@ function SearchToDo() {
         context.setSearch(event.target.value);
     };
 
-    return <form onSubmit={onSubmitHandler} className={classes['container']}>
+    return <form onSubmit={onSubmitHandler} className={classes['container']} style={props.style}>
         <input type='text' placeholder='Search...' value={search} onChange={onSearchHandler} className={classes['input']} />
         <Button type='submit' className={classes['search-button']}>Clear</Button>
     </form>;

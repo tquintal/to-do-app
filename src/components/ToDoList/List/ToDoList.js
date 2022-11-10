@@ -1,5 +1,6 @@
 import { useContext, useState, Fragment } from 'react';
 import Context from '../../../context/context';
+import NewToDo from '../../NewToDo/NewToDo';
 import Sort from '../Sort/Sort';
 import SearchToDo from '../../SearchToDo/SearchToDo';
 import ToDos from '../ToDos';
@@ -54,67 +55,72 @@ function ToDoList() {
         context.onDelete(id);
     };
 
-    return <div className={classes['to-do-list-container']}>
-        {
-            context.groupBy !== 'deleted' ?
-                <Fragment>
-                    <Sort context={context} />
-                    <SearchToDo />
-                    <div onClick={onToDosHideHandler} className={classes['title-container']}>
-                        <div className={classes['title-left']}>
-                            <h3>To do</h3>
-                            <p className={classes['counter']}>{context.displayToDos.filter(todo => !todo.completed && !todo.deleted).length}</p>
-                        </div>
-                        <div className={classes['show-hide']}>
-                            <p>{showToDos ? 'Hide' : 'Show'}</p>
-                            {showToDos ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
-                        </div>
-                    </div>
-                    <ToDos
-                        showToDos={showToDos}
-                        context={context}
-                        onCompleteHandler={onCompleteHandler}
-                        showOptionsHandler={showOptionsHandler}
-                        onEditHandler={onEditHandler}
-                        onPriorityChangeHandler={onPriorityChangeHandler}
-                        options={options}
-                        onCategoryEditHandler={onCategoryEditHandler}
-                        onDeleteHandler={onDeleteHandler}
+    return (
+        <Fragment>
+            {context.groupBy !== 'deleted' && <NewToDo />}
+            <div className={classes['to-do-list-container']}>
+                {
+                    context.groupBy !== 'deleted' ?
+                        <Fragment>
+                            <Sort context={context} />
+                            <SearchToDo />
+                            <div onClick={onToDosHideHandler} className={classes['title-container']}>
+                                <div className={classes['title-left']}>
+                                    <h3>To do</h3>
+                                    <p className={classes['counter']}>{context.displayToDos.filter(todo => !todo.completed && !todo.deleted).length}</p>
+                                </div>
+                                <div className={classes['show-hide']}>
+                                    <p>{showToDos ? 'Hide' : 'Show'}</p>
+                                    {showToDos ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
+                                </div>
+                            </div>
+                            <ToDos
+                                showToDos={showToDos}
+                                context={context}
+                                onCompleteHandler={onCompleteHandler}
+                                showOptionsHandler={showOptionsHandler}
+                                onEditHandler={onEditHandler}
+                                onPriorityChangeHandler={onPriorityChangeHandler}
+                                options={options}
+                                onCategoryEditHandler={onCategoryEditHandler}
+                                onDeleteHandler={onDeleteHandler}
 
-                    />
-                    <div onClick={onCompletedHideHandler} className={classes['title-container']}>
-                        <div className={classes['title-left']}>
-                            <h3>Completed</h3>
-                            <p className={classes['counter']}>{context.displayToDos.filter(todo => todo.completed && !todo.deleted).length}</p>
-                        </div>
-                        <div className={classes['show-hide']}>
-                            <p>{showCompleted ? 'Hide' : 'Show'}</p>
-                            {showCompleted ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
-                        </div>
-                    </div>
-                    <Completed
-                        showCompleted={showCompleted}
-                        context={context}
-                        onCompleteHandler={onCompleteHandler}
-                        onEditHandler={onEditHandler}
-                        showOptionsHandler={showOptionsHandler}
-                        options={options}
-                        onCategoryEditHandler={onCategoryEditHandler}
-                        onPriorityChangeHandler={onPriorityChangeHandler}
-                        onDeleteHandler={onDeleteHandler}
-                    />
-                </Fragment>
-                :
-                <Fragment>
-                    <SearchToDo />
-                    <Deleted
-                        context={context}
-                        onEditHandler={onEditHandler}
-                        onDeleteHandler={onDeleteHandler}
-                    />
-                </Fragment>
-        }
-    </div>;
+                            />
+                            <div onClick={onCompletedHideHandler} className={classes['title-container']}>
+                                <div className={classes['title-left']}>
+                                    <h3>Completed</h3>
+                                    <p className={classes['counter']}>{context.displayToDos.filter(todo => todo.completed && !todo.deleted).length}</p>
+                                </div>
+                                <div className={classes['show-hide']}>
+                                    <p>{showCompleted ? 'Hide' : 'Show'}</p>
+                                    {showCompleted ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
+                                </div>
+                            </div>
+                            <Completed
+                                showCompleted={showCompleted}
+                                context={context}
+                                onCompleteHandler={onCompleteHandler}
+                                onEditHandler={onEditHandler}
+                                showOptionsHandler={showOptionsHandler}
+                                options={options}
+                                onCategoryEditHandler={onCategoryEditHandler}
+                                onPriorityChangeHandler={onPriorityChangeHandler}
+                                onDeleteHandler={onDeleteHandler}
+                            />
+                        </Fragment>
+                        :
+                        <Fragment>
+                            <SearchToDo style={{ marginTop: '160px' }} />
+                            <Deleted
+                                context={context}
+                                onEditHandler={onEditHandler}
+                                onDeleteHandler={onDeleteHandler}
+                            />
+                        </Fragment>
+                }
+            </div>
+        </Fragment>
+    );
 };
 
 export default ToDoList;
