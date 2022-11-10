@@ -49,7 +49,7 @@ function Categories() {
         <li className={classes['separator']} />
 
         <li onClick={setGroupByHandler} id={'deleted'} className={`${classes['ul-li-item']} ${context.groupBy === 'deleted' && classes['ul-li-item-active']}`}>
-            🗑️ Deleted
+            Deleted
             <p className={classes['deleted-counter']}>{context.toDos.filter(todo => todo.deleted).length}</p>
         </li>
 
