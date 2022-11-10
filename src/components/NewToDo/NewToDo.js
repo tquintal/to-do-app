@@ -25,7 +25,7 @@ function NewToDo() {
         event.preventDefault();
 
         if (todo.trim() !== '') {
-            context.onAdd(todo, category, highPriority);
+            context.onAddToDo(todo, category, highPriority);
         } else
             alert(`Can't be empty! ⚠️`);
 

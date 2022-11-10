@@ -10,7 +10,7 @@ function Actions() {
         const csvToArray = (str, delimiter = ',') => {
             const headers = str.slice(0, str.indexOf('\n')).split(delimiter);
 
-            if (headers.join('') !== 'idcontentcreatedcategoryhighPrioritycompleted') {
+            if (headers.join('') !== 'idcontentcreatedcategoryhighPrioritycompleteddeleted') {
                 alert('⚠️ Error, wrong format file.');
                 return 'error';
             };
@@ -42,13 +42,13 @@ function Actions() {
                 let text = e.target.result.replace(/"/g, '');
                 const convert = csvToArray(text);
                 if (convert !== 'error')
-                    context.onLoadToDos(csvToArray(text));
+                    context.onImportTodos(csvToArray(text));
             };
         };
     };
 
     function onResetHandler() {
-        context.onDeleteAll();
+        context.onReset();
         window.location.reload();
     };
 
