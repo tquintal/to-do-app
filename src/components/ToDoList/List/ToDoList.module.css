@@ -35,3 +35,13 @@
 .title svg {
   height: 100%;
 }
+
+.deleted-search {
+  margin-top: 160px;
+}
+
+@media only screen and (max-width: 850px) {
+  .deleted-search {
+    margin-top: 80px;
+  }
+}

@@ -18,7 +18,7 @@ const SearchToDo = props => {
         context.setSearch(event.target.value);
     };
 
-    return <form onSubmit={onSubmitHandler} className={classes['container']} style={props.style}>
+    return <form onSubmit={onSubmitHandler} className={`${classes['container']} ${props.className}`} >
         <input type='text' placeholder='Search...' value={search} onChange={onSearchHandler} className={classes['input']} />
         <Button type='submit' className={classes['search-button']}>Clear</Button>
     </form>;

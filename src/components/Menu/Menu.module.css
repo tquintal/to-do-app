@@ -36,6 +36,7 @@
     right: -100%;
     transition: 350ms;
     border: none;
+    background-color: #000000;
   }
 
   .app-title-container svg {

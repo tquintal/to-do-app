@@ -111,7 +111,7 @@ function ToDoList() {
                         </Fragment>
                         :
                         <Fragment>
-                            <SearchToDo style={{ marginTop: '160px' }} />
+                            <SearchToDo className={classes['deleted-search']} />
                             <Deleted
                                 context={context}
                                 onEditHandler={onEditHandler}

@@ -40,7 +40,7 @@ function Categories() {
             <p id='today' onClick={setGroupByHandler} className={classes['counter']}>{todayCounter}</p>
         </li>
         <li onClick={setGroupByHandler} id='none' className={`${classes['ul-li-item']} ${context.groupBy === 'none' && classes['ul-li-item-active']}`}>
-            None
+            No category
             <p id='none' onClick={setGroupByHandler} className={classes['counter']}>{context.toDos.filter(todo => todo.category.toLowerCase() === 'none' && !todo.completed).length}</p>
         </li>
 
