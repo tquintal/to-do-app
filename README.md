@@ -38,7 +38,7 @@ My recent react learning playground 🤓
 - ~~Mobile view~~
 - ~~Recycle bin~~
 - ~~Refactor context logic~~
-- Same component for todos and completed list (code reuse)
+- ~~Same component for todos and completed list (code reuse)~~
 - More counters
 - Improve import validation
 - Export file without dependencies
