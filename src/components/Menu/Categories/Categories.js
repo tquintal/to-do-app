@@ -14,7 +14,7 @@ function Categories() {
         let todos = context.toDos.map(todo => {
             return { ...todo, created: new Date(todo.created) } // STRING TO DATE
         });
-        todos = todos.filter(todo => todo.created.toString().slice(0, 10) === today && !todo.completed);
+        todos = todos.filter(todo => todo.created.toString().slice(0, 10) === today && !todo.completed && !todo.deleted);
         setTodayCounter(todos.length);
     }, [context.toDos]);
 
@@ -33,11 +33,11 @@ function Categories() {
 
         <li onClick={setGroupByHandler} id={'all'} className={`${classes['ul-li-item']} ${context.groupBy === 'all' && classes['ul-li-item-active']}`}>
             All
-            <p className={classes['deleted-counter']}>{context.toDos.filter(todo => !todo.completed).length}</p>
+            <p className={classes['deleted-counter']}>{context.toDos.filter(todo => !todo.completed && !todo.deleted).length}</p>
         </li>
         <li onClick={setGroupByHandler} id={'none'} className={`${classes['ul-li-item']} ${context.groupBy === 'none' && classes['ul-li-item-active']}`}>
             None
-            <p className={classes['deleted-counter']}>{context.toDos.filter(todo => todo.category.toLowerCase() === 'none' && !todo.completed).length}</p>
+            <p className={classes['deleted-counter']}>{context.toDos.filter(todo => todo.category.toLowerCase() === 'none' && !todo.completed && !todo.deleted).length}</p>
         </li>
         <li onClick={setGroupByHandler} id={'today'} className={`${classes['ul-li-item']} ${context.groupBy === 'today' && classes['ul-li-item-active']}`}>
             Today
