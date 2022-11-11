@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import Context from '../../../context/context';
 import classes from './Categories.module.css';
-import Button from '../../../UI/Button';
+import { MdDeleteOutline } from 'react-icons/md';
 
 function Categories() {
     const context = useContext(Context);
@@ -31,17 +31,17 @@ function Categories() {
     return <ul className={classes['ul-container']}>
         <li className={classes['separator']} />
 
-        <li onClick={setGroupByHandler} id={'all'} className={`${classes['ul-li-item']} ${context.groupBy === 'all' && classes['ul-li-item-active']}`}>
+        <li id='all' onClick={setGroupByHandler} className={`${classes['ul-li-item']} ${context.groupBy === 'all' && classes['ul-li-item-active']}`}>
             All
-            <p className={classes['deleted-counter']}>{context.toDos.filter(todo => !todo.completed && !todo.deleted).length}</p>
+            <p id='all' onClick={setGroupByHandler} className={classes['counter']}>{context.toDos.filter(todo => !todo.completed && !todo.deleted).length}</p>
         </li>
-        <li onClick={setGroupByHandler} id={'none'} className={`${classes['ul-li-item']} ${context.groupBy === 'none' && classes['ul-li-item-active']}`}>
-            None
-            <p className={classes['deleted-counter']}>{context.toDos.filter(todo => todo.category.toLowerCase() === 'none' && !todo.completed && !todo.deleted).length}</p>
-        </li>
-        <li onClick={setGroupByHandler} id={'today'} className={`${classes['ul-li-item']} ${context.groupBy === 'today' && classes['ul-li-item-active']}`}>
+        <li id='today' onClick={setGroupByHandler} className={`${classes['ul-li-item']} ${context.groupBy === 'today' && classes['ul-li-item-active']}`}>
             Today
-            <p className={classes['deleted-counter']}>{todayCounter}</p>
+            <p id='today' onClick={setGroupByHandler} className={classes['counter']}>{todayCounter}</p>
+        </li>
+        <li onClick={setGroupByHandler} id='none' className={`${classes['ul-li-item']} ${context.groupBy === 'none' && classes['ul-li-item-active']}`}>
+            None
+            <p id='none' onClick={setGroupByHandler} className={classes['counter']}>{context.toDos.filter(todo => todo.category.toLowerCase() === 'none' && !todo.completed).length}</p>
         </li>
 
         {context.categories.filter(category => category.toLowerCase() !== 'none').length > 0 && <li className={classes['separator']} />}
@@ -57,7 +57,8 @@ function Categories() {
                 >
                     {category}
                 </li>
-                <Button style={{ color: '#6c6c6c' }} category={category} onClick={onDeleteHandler}>Delete</Button>
+                <p id={category} onClick={setGroupByHandler} className={classes['custom-counter']}>{context.toDos.filter(todo => todo.category === category && !todo.completed).length}</p>
+                <button className={classes['delete-button']}><MdDeleteOutline category={category} onClick={onDeleteHandler} /></button>
             </div>
         )}
 
@@ -65,7 +66,7 @@ function Categories() {
 
         <li onClick={setGroupByHandler} id={'deleted'} className={`${classes['ul-li-item']} ${context.groupBy === 'deleted' && classes['ul-li-item-active']}`}>
             Deleted
-            <p className={classes['deleted-counter']}>{context.toDos.filter(todo => todo.deleted).length}</p>
+            <p className={classes['counter']}>{context.toDos.filter(todo => todo.deleted).length}</p>
         </li>
 
         <li className={classes['separator']} />

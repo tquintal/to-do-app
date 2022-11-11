@@ -8,6 +8,9 @@
 .custom-cat-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-right: 25px;
+  gap: 10px;
 }
 
 .custom-cat-container-active {
@@ -21,6 +24,7 @@
   width: 100%;
   padding: 10px;
   padding-left: 25px;
+  padding-right: 25px;
   cursor: pointer;
 }
 
@@ -28,13 +32,27 @@
   background: #303030;
 }
 
-.custom-cat-container button {
-  margin-right: 25px;
+.delete-button {
+  all: unset;
+  height: 100%;
+  width: 30px;
 }
 
-.deleted-counter {
+.delete-button svg {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.counter,
+.custom-counter,
+.delete-button svg {
+  cursor: pointer;
   color: #6c6c6c;
-  margin-right: 25px;
+}
+
+.today-counter-container p {
+  color: #ffffff;
 }
 
 .separator {
