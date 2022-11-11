@@ -1,13 +1,13 @@
 import { Fragment } from 'react';
-import classes from './List.module.css';
-import Button from '../../UI/Button';
+import classes from '../ToDos.module.css';
+import Button from '../../../UI/Button';
 
 const ToDos = props => {
     return <Fragment>
         {
-            props.showToDos &&
+            props.show &&
             <ul className={classes['ul-container']}>
-                {props.context.displayToDos.map(todo => !todo.completed && (props.context.groupBy === 'deleted' ? todo.deleted : !todo.deleted) &&
+                {props.context.displayToDos.map(todo => (props.todoList ? !todo.completed : todo.completed) && (props.context.groupBy === 'deleted' ? todo.deleted : !todo.deleted) &&
                     <li key={todo.id}>
                         <div className={classes['todo-container']}>
                             <input
@@ -18,20 +18,25 @@ const ToDos = props => {
                             />
                             <input
                                 type='text'
-                                className={classes['to-do']}
+                                className={`${classes['to-do']} ${todo.completed && classes['completed']}`}
                                 defaultValue={todo.content}
                                 todoid={todo.id}
                                 onChange={props.onEditHandler}
                                 onClick={props.showOptionsHandler}
-                            />
-                            <Button
-                                todoid={todo.id}
-                                onClick={props.onPriorityChangeHandler}
-                                className={`${classes['list-button']} ${todo.completed && classes['list-button-disabled']}`}
                                 disabled={todo.completed}
-                            >
-                                {todo.highPriority ? '❗' : '❕'}
-                            </Button>
+                            />
+                            {!todo.completed ?
+                                <Button
+                                    todoid={todo.id}
+                                    onClick={props.onPriorityChangeHandler}
+                                    className={`${classes['list-button']} ${todo.completed && classes['list-button-disabled']}`}
+                                    disabled={todo.completed}
+                                >
+                                    {todo.highPriority ? '❗' : '❕'}
+                                </Button>
+                                :
+                                <Button title='delete-button' todoid={todo.id} onClick={props.onDeleteHandler} className={classes['list-button']}>Delete</Button>
+                            }
                         </div>
                         {
                             props.options === todo.id &&

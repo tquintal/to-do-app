@@ -3,11 +3,10 @@ import Context from '../../../context/context';
 import NewToDo from '../../NewToDo/NewToDo';
 import Sort from '../Sort/Sort';
 import SearchToDo from '../../SearchToDo/SearchToDo';
-import ToDos from '../ToDos';
+import ToDos from '../ToDos/ToDos';
 import classes from './ToDoList.module.css';
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
-import Completed from '../Completed';
-import Deleted from '../Deleted';
+import Deleted from '../Deleted/Deleted';
 
 function ToDoList() {
     const context = useContext(Context);
@@ -75,7 +74,8 @@ function ToDoList() {
                                 </div>
                             </div>
                             <ToDos
-                                showToDos={showToDos}
+                                todoList={true}
+                                show={showToDos}
                                 context={context}
                                 onCompleteHandler={onCompleteHandler}
                                 showOptionsHandler={showOptionsHandler}
@@ -96,15 +96,16 @@ function ToDoList() {
                                     {showCompleted ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
                                 </div>
                             </div>
-                            <Completed
-                                showCompleted={showCompleted}
+                            <ToDos
+                                todoList={false}
+                                show={showCompleted}
                                 context={context}
                                 onCompleteHandler={onCompleteHandler}
-                                onEditHandler={onEditHandler}
                                 showOptionsHandler={showOptionsHandler}
+                                onEditHandler={onEditHandler}
+                                onPriorityChangeHandler={onPriorityChangeHandler}
                                 options={options}
                                 onCategoryEditHandler={onCategoryEditHandler}
-                                onPriorityChangeHandler={onPriorityChangeHandler}
                                 onDeleteHandler={onDeleteHandler}
                             />
                         </Fragment>

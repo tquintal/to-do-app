@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
-import classes from './List.module.css';
-import Button from '../../UI/Button';
+import classes from '../ToDos.module.css';
+import Button from '../../../UI/Button';
 
 const Deleted = props => {
     return <Fragment>
