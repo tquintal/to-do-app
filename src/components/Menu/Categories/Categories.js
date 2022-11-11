@@ -1,10 +1,22 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import Context from '../../../context/context';
 import classes from './Categories.module.css';
 import Button from '../../../UI/Button';
 
 function Categories() {
     const context = useContext(Context);
+    const [todayCounter, setTodayCounter] = useState(0);
+
+    // SET TODAY's COUNTER
+    useEffect(() => {
+        console.log('➡️ CATEGORIES.JS USE EFFECT');
+        const today = new Date().toString().slice(0, 10);
+        let todos = context.toDos.map(todo => {
+            return { ...todo, created: new Date(todo.created) } // STRING TO DATE
+        });
+        todos = todos.filter(todo => todo.created.toString().slice(0, 10) === today && !todo.completed);
+        setTodayCounter(todos.length);
+    }, [context.toDos]);
 
     const setGroupByHandler = event => {
         context.setGroupBy(event.target.id)
@@ -21,12 +33,15 @@ function Categories() {
 
         <li onClick={setGroupByHandler} id={'all'} className={`${classes['ul-li-item']} ${context.groupBy === 'all' && classes['ul-li-item-active']}`}>
             All
+            <p className={classes['deleted-counter']}>{context.toDos.filter(todo => !todo.completed).length}</p>
         </li>
         <li onClick={setGroupByHandler} id={'none'} className={`${classes['ul-li-item']} ${context.groupBy === 'none' && classes['ul-li-item-active']}`}>
             None
+            <p className={classes['deleted-counter']}>{context.toDos.filter(todo => todo.category.toLowerCase() === 'none' && !todo.completed).length}</p>
         </li>
         <li onClick={setGroupByHandler} id={'today'} className={`${classes['ul-li-item']} ${context.groupBy === 'today' && classes['ul-li-item-active']}`}>
             Today
+            <p className={classes['deleted-counter']}>{todayCounter}</p>
         </li>
 
         {context.categories.filter(category => category.toLowerCase() !== 'none').length > 0 && <li className={classes['separator']} />}

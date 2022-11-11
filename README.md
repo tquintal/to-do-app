@@ -39,7 +39,7 @@ My recent react learning playground 🤓
 - ~~Recycle bin~~
 - ~~Refactor context logic~~
 - ~~Same component for todos and completed list (code reuse)~~
-- More counters
+- ~~More counters~~
 - Improve import validation
 - Export file without dependencies
 - Sort by custom order
