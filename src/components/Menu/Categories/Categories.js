@@ -41,7 +41,7 @@ function Categories() {
         </li>
         <li onClick={setGroupByHandler} id='none' className={`${classes['ul-li-item']} ${context.groupBy === 'none' && classes['ul-li-item-active']}`}>
             No category
-            <p id='none' onClick={setGroupByHandler} className={classes['counter']}>{context.toDos.filter(todo => todo.category.toLowerCase() === 'none' && !todo.completed).length}</p>
+            <p id='none' onClick={setGroupByHandler} className={classes['counter']}>{context.toDos.filter(todo => todo.category.toLowerCase() === 'none' && !todo.completed && !todo.deleted).length}</p>
         </li>
 
         {context.categories.filter(category => category.toLowerCase() !== 'none').length > 0 && <li className={classes['separator']} />}
@@ -57,7 +57,7 @@ function Categories() {
                 >
                     {category}
                 </li>
-                <p id={category} onClick={setGroupByHandler} className={classes['custom-counter']}>{context.toDos.filter(todo => todo.category === category && !todo.completed).length}</p>
+                <p id={category} onClick={setGroupByHandler} className={classes['custom-counter']}>{context.toDos.filter(todo => todo.category === category && !todo.completed && !todo.deleted).length}</p>
                 <button className={classes['delete-button']}><MdDeleteOutline category={category} onClick={onDeleteHandler} /></button>
             </div>
         )}

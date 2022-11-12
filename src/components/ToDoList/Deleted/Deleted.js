@@ -1,10 +1,18 @@
-import { Fragment } from 'react';
+import { useContext, Fragment } from 'react';
+import Context from '../../../context/context';
 import classes from '../ToDos.module.css';
 import Button from '../../../UI/Button';
 
 const Deleted = props => {
+    const context = useContext(Context);
+
+    const deleteAllPermanentlyHandler = () => {
+        context.onDeleteAllPermanently();
+    };
+
     return <Fragment>
         <ul className={classes['ul-container']}>
+            <Button onClick={deleteAllPermanentlyHandler} className={classes['delete-all-button']}>Permanently delete all</Button>
             {props.context.displayToDos.map(todo =>
                 <li key={todo.id}>
                     <div className={classes['todo-container']}>

@@ -5,6 +5,12 @@
   /* gap: 15px; */
 }
 
+.delete-all-button {
+  background-color: #303030;
+  margin-bottom: 15px;
+  color: #838383;
+}
+
 .todo-container {
   display: flex;
   align-items: center;

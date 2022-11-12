@@ -26,6 +26,7 @@ const Context = React.createContext({
     setSearch: () => { },
 
     // ACTIONS
+    onDeleteAllPermanently: () => { },
     onReset: () => { },
     onImportTodos: () => { }
 });
@@ -258,6 +259,18 @@ export const ContextProvider = props => {
         });
     };
 
+    // DELETE ALL PERMANENTLY
+    const deleteAllPermanentlyHandler = () => {
+        setToDos(prev => {
+            const updated = [...prev].filter(todo => !todo.deleted);
+            console.log('HERE');
+            console.table(updated);
+            localStorage.setItem('ToDos', JSON.stringify(updated));
+            displayToDosHandler(groupBy, sortBy, searchBy, updated);
+            return updated;
+        });
+    };
+
     // RESET / DELETE ALL
     const resetHandler = () => {
         setToDos(() => {
@@ -300,6 +313,7 @@ export const ContextProvider = props => {
                 setSearch: setSearchByHandler,
 
                 // ACTIONS
+                onDeleteAllPermanently: deleteAllPermanentlyHandler,
                 onReset: resetHandler,
                 onImportTodos: importToDosHandler
             }}
