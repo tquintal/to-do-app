@@ -1,3 +1,13 @@
+.actions-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.actions-container button {
+  width: 100%;
+}
+
 .ul-container {
   list-style: none;
   display: flex;
